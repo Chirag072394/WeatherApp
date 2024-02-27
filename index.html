@@ -18,15 +18,66 @@
         <div class="weather-container">
             <!--grant location access-->
             <div class="grant-location-access">
-                <img src="./assets/location.png" alt="">
+                <img src="./assets/location.png" width="80" height="80" alt="">
                 <p>grant location access</p>
                 <p>Allow Access to get Weather Information</p>
+                <button class="btn" data-grantAccess>Grant Access</button>
+            </div>
+
+            <!--search Weather Section-->
+            <form class="form-container" data-searchForm>
+                <input type="text" placeholder="search..." data-searchInput>
+                <button class="btn" type="submit"><img src="./assets/search.png" width="20" height="20"></i></button>
+            </form>
+
+            <!--loading Screen container-->
+            <div class="loading-container">
+                <img src="./assets/loading.gif" width="150" height="150" alt="">
+                <p>Loading</p>
+            </div>
+
+            <!--show Weather Information-->
+
+            <div class="user-info-container">
+                <!--city name and flag-->
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon >
+                </div>
+                
+                <p data-weatherDesc></p>
+                
+                <img data-weatherIcon>
+
+                <p data-temp></p>
+
+                <!--3 cards - paramters-->
+                <div class="parameter-container">
+                    <!--card 1-->
+                    <div class="parameter">
+                        <img src="./assets/wind.png">
+                        <p>windspeed</p>
+                        <p data-windSpeed></p>
+                    </div>
+                    <!--card 2-->
+                    <div class="parameter">
+                        <img src="./assets/humidity.png" alt="">
+                        <p>humidity</p>
+                        <p data-humidity></p>
+                    </div>
+                    <!--card 3-->
+                    <div class="parameter">
+                        <img src="./assets/cloud.png" alt="">
+                        <p>Clouds</p>
+                        <p data-cloudiness></p>
+                    </div>
+                </div>
             </div>
         </div>
        
     </div>
 
     <script src="https://kit.fontawesome.com/4957899016.js" crossorigin="anonymous"></script>   
-    <script src="script.js"></script>
+    <script src="scriptWeather.js"></script>
 </body>
 </html>
