@@ -92,7 +92,7 @@ function renderWeatherInfo(weatherInfo){
     cityName.innerText=weatherInfo?.name;
     countryIcon.src=`https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;    
     description.innerText=weatherInfo?.weather?.[0]?.description;
-    weatherIcon.src=`https://openweathermarp.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
+    weatherIcon.src=`http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
     temperature.innerText=weatherInfo?.main?.temp;
     windspeed.innerText=weatherInfo?.wind?.speed;
     humidity.innerText=weatherInfo?.main?.humidity;
