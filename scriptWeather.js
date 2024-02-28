@@ -93,10 +93,10 @@ function renderWeatherInfo(weatherInfo){
     countryIcon.src=`https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;    
     description.innerText=weatherInfo?.weather?.[0]?.description;
     weatherIcon.src=`http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
-    temperature.innerText=weatherInfo?.main?.temp;
-    windspeed.innerText=weatherInfo?.wind?.speed;
-    humidity.innerText=weatherInfo?.main?.humidity;
-    cloudiness.innerText=weatherInfo?.clouds?.all;
+    temperature.innerText=`${weatherInfo?.main?.temp} °C`;
+    windspeed.innerText=`${weatherInfo?.wind?.speed} m/s`;
+    humidity.innerText=`${weatherInfo?.main?.humidity} %`;
+    cloudiness.innerText=`${weatherInfo?.clouds?.all} %`;
 
 }   
 
@@ -128,7 +128,7 @@ let searchInput=document.querySelector('[data-searchInput]');
 searchForm.addEventListener("submit", (e) =>{
         e.preventDefault();
         let cityName=searchInput.value;
-
+        let cod=200;
         if(cityName===""){
             return;
         }else{
@@ -143,16 +143,22 @@ async function fetchSearchWeatherInfo(cityName){
 
 
     try{
+        
         const res=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`);
         const data= await res.json();
-        loadingScreen.classList.remove('active');
-        userInfoContainer.classList.add('active');   
-        renderWeatherInfo(data);
-
+        //if city not found updated code
+        if(data.cod !=='404'){
+            renderWeatherInfo(data);
+            loadingScreen.classList.remove('active');
+            userInfoContainer.classList.add('active');   
+            
+        }
+        else{
+            alert('city not found');
+        }
     }
-
     catch(err){
-      console.log('error found'+ err);
+      console.err("city not found ",err.message);
         
     }
 }
