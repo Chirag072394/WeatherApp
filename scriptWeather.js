@@ -14,16 +14,20 @@ const API_KEY='c2f5ad623070e27fef773cd2af0cfb58';
 currentTab.classList.add('current-tab');
 getfromSessionStorage();
 
+
 function switchTab(clickedTab){
     if(clickedTab!=currentTab){
         currentTab.classList.remove('current-tab');
         currentTab=clickedTab;
         currentTab.classList.add('current-tab');
 
+        notFound.classList.remove('active'); //404 not found removed on tab switching 
+
         if(!searchForm.classList.contains("active")){
             userInfoContainer.classList.remove("active");
             grantAccessContainer.classList.remove("active");
             searchForm.classList.add("active");
+           
         }else{
             //switching back to user Weather and have to make it visible
             
@@ -148,14 +152,14 @@ async function fetchSearchWeatherInfo(cityName){
         const data= await res.json();
         //if city not found updated code
         if(data.cod !=='404'){
-            notFound.classList.remove('active');
+            notFound.classList.remove('active'); //404 not found removed
             renderWeatherInfo(data);
             loadingScreen.classList.remove('active');
             userInfoContainer.classList.add('active');     
         }
         else{
             loadingScreen.classList.remove('active');
-            notFound.classList.add('active');
+            notFound.classList.add('active'); //404 not found class addes
         }
     }
     catch(err){
