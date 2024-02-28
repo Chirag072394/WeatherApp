@@ -6,7 +6,7 @@ const grantAccessContainer=document.querySelector('.grant-location-access');
 const searchForm=document.querySelector('[data-searchForm]');
 const loadingScreen=document.querySelector('.loading-container');
 const userInfoContainer=document.querySelector('.user-info-container');
-
+const notFound=document.querySelector('.not-found');
 
 let currentTab=userTab;
 //Api KEy
@@ -128,7 +128,7 @@ let searchInput=document.querySelector('[data-searchInput]');
 searchForm.addEventListener("submit", (e) =>{
         e.preventDefault();
         let cityName=searchInput.value;
-        let cod=200;
+      
         if(cityName===""){
             return;
         }else{
@@ -148,13 +148,14 @@ async function fetchSearchWeatherInfo(cityName){
         const data= await res.json();
         //if city not found updated code
         if(data.cod !=='404'){
+            notFound.classList.remove('active');
             renderWeatherInfo(data);
             loadingScreen.classList.remove('active');
-            userInfoContainer.classList.add('active');   
-            
+            userInfoContainer.classList.add('active');     
         }
         else{
-            alert('city not found');
+            loadingScreen.classList.remove('active');
+            notFound.classList.add('active');
         }
     }
     catch(err){
