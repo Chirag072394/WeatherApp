@@ -93,7 +93,7 @@ function renderWeatherInfo(weatherInfo){
 
     //fetching values and put in the page dynamically
 
-    cityName.innerText=weatherInfo?.name;
+    cityName.innerText=`${weatherInfo?.name}`;
     countryIcon.src=`https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;    
     description.innerText=weatherInfo?.weather?.[0]?.description;
     weatherIcon.src=`http://openweathermap.org/img/w/${weatherInfo?.weather?.[0]?.icon}.png`;
@@ -128,8 +128,8 @@ function showPosition(position){
 //searchTab
 
 let searchInput=document.querySelector('[data-searchInput]');
-
-searchForm.addEventListener("submit", (e) =>{
+let searchBtn=document.querySelector('[search-btn]');
+searchBtn.addEventListener("click", (e) =>{
         e.preventDefault();
         let cityName=searchInput.value;
       
@@ -167,3 +167,5 @@ async function fetchSearchWeatherInfo(cityName){
         
     }
 }
+
+
